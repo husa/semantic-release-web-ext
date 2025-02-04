@@ -1,0 +1,50 @@
+{
+  "name": "semantic-release-web-ext",
+  "version": "0.0.0",
+  "description": "A semantic-release plugin to publish Firefox add-ons using web-ext",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/husa/semantic-release-web-ext.git"
+  },
+  "keywords": [
+    "semantic-release",
+    "web-ext",
+    "plugin",
+    "firefox"
+  ],
+  "author": "husa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/husa/semantic-release-web-ext/issues"
+  },
+  "homepage": "https://github.com/husa/semantic-release-web-ext#readme",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose",
+    "prettier": "prettier --write .",
+    "lint": "eslint .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
+    "semantic-release": "^24.2.1"
+  },
+  "dependencies": {
+    "@semantic-release/error": "^4.0.0",
+    "aggregate-error": "^5.0.0",
+    "web-ext": "^8.3.0"
+  }
+}

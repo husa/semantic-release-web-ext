@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "test-extension",
+  "version": "1.0.1",
+  "description": "test description",
+  "permissions": ["storage"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "example@example.com"
+    }
+  }
+}
