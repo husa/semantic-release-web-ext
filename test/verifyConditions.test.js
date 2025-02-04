@@ -50,6 +50,9 @@ describe('verifyConditions', () => {
 
     await verifyConditions({ sourceDir: 'test/extension' }, context);
 
-    expect(webExt.cmd.lint).toHaveBeenCalledWith({ sourceDir: 'test/extension' });
+    expect(webExt.cmd.lint).toHaveBeenCalledWith(
+      { sourceDir: 'test/extension' },
+      { shouldExitProgram: false },
+    );
   });
 });
