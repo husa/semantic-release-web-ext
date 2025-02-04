@@ -28,7 +28,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose",
     "prettier": "prettier --write .",
     "lint": "eslint .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "*.{ts,js,json,md}": [
@@ -39,6 +40,17 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github"
     ]
   },
   "devDependencies": {
