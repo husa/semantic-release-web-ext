@@ -2,8 +2,11 @@
   "name": "semantic-release-web-ext",
   "version": "0.0.0",
   "description": "A semantic-release plugin to publish Firefox add-ons using web-ext",
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
+  "files": [
+    "./lib/*.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/husa/semantic-release-web-ext.git"
@@ -20,6 +23,7 @@
     "url": "https://github.com/husa/semantic-release-web-ext/issues"
   },
   "homepage": "https://github.com/husa/semantic-release-web-ext#readme",
+  "private": false,
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose",
     "prettier": "prettier --write .",
