@@ -1,6 +1,12 @@
 import { jest } from '@jest/globals';
-import { publish } from '../lib/publish';
 import webExt from 'web-ext';
+
+jest.unstable_mockModule('fs/promises', () => ({
+  readFile: jest.fn(),
+  writeFile: jest.fn(),
+}));
+const { readFile } = await import('fs/promises');
+const { publish } = await import('../lib/publish');
 
 describe('publish', () => {
   let context;
@@ -8,6 +14,9 @@ describe('publish', () => {
 
   beforeEach(() => {
     webExt.cmd.sign = jest.fn();
+    readFile.mockResolvedValue(
+      JSON.stringify({ browser_specific_settings: { gecko: { id: 'test-id' } } }),
+    );
     context = {
       env: {
         WEB_EXT_API_KEY: 'test-api-key',
@@ -54,5 +63,12 @@ describe('publish', () => {
     console.log = jest.fn();
 
     await expect(publish(pluginConfig, context)).rejects.toThrow('sign error');
+  });
+
+  it('should return link to extension', async () => {
+    expect(await publish(pluginConfig, context)).toEqual({
+      name: 'Mozilla Add-ons',
+      url: 'https://addons.mozilla.org/firefox/addon/test-id',
+    });
   });
 });
