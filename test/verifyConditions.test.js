@@ -17,7 +17,6 @@ describe('verifyConditions', () => {
         log: jest.fn(),
       },
     };
-    jest.spyOn(process, 'exit').mockImplementation(() => {});
   });
   afterEach(() => {
     jest.resetAllMocks();
