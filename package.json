@@ -68,6 +68,6 @@
   "dependencies": {
     "@semantic-release/error": "^4.0.0",
     "aggregate-error": "^5.0.0",
-    "web-ext": "^8.3.0"
+    "web-ext": "^8.4.0"
   }
 }
