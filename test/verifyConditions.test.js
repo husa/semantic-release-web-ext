@@ -37,10 +37,10 @@ describe('verifyConditions', () => {
   it('should log default values if not provided in pluginConfig', async () => {
     await expect(verifyConditions({}, context)).rejects.toThrow(SemanticReleaseError);
 
-    expect(context.logger.log).toHaveBeenCalledWith('channel not defined, using default: listed');
-    expect(context.logger.log).toHaveBeenCalledWith('sourceDir not defined, using default: dist');
+    expect(context.logger.log).toHaveBeenCalledWith('channel not defined, using default: "listed"');
+    expect(context.logger.log).toHaveBeenCalledWith('sourceDir not defined, using default: "dist"');
     expect(context.logger.log).toHaveBeenCalledWith(
-      'artifactsDir not defined, using default: artifacts',
+      'artifactsDir not defined, using default: "artifacts"',
     );
   });
 
@@ -53,5 +53,19 @@ describe('verifyConditions', () => {
       { sourceDir: 'test/extension' },
       { shouldExitProgram: false },
     );
+  });
+  it('should throw an error if channel is not "listed" or "unlisted"', async () => {
+    await expect(verifyConditions({ channel: 'invalid' }, context)).rejects.toThrow(AggregateError);
+  });
+
+  it('should not throw an error if channel is "listed" or "unlisted"', async () => {
+    await expect(verifyConditions({ channel: 'listed' }, context)).resolves.not.toThrow();
+    await expect(verifyConditions({ channel: 'unlisted' }, context)).resolves.not.toThrow();
+  });
+
+  it('should throw a SemanticReleaseError if webExt.cmd.lint fails', async () => {
+    webExt.cmd.lint = jest.fn().mockRejectedValue(new Error('Linting failed'));
+
+    await expect(verifyConditions({}, context)).rejects.toThrow(SemanticReleaseError);
   });
 });
