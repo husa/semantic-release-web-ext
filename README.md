@@ -88,3 +88,4 @@ Publishes extension using `web-ext` [`sign`](https://extensionworkshop.com/docum
 - [semantic-release-firefox-add-on](https://github.com/tophat/semantic-release-firefox-add-on)
 - [semantic-release-amo](https://github.com/iorate/semantic-release-amo)
 - [semantic-release-firefox](https://github.com/felixfbecker/semantic-release-firefox)
+- alternatively you can use [@semantic-release/exec](https://github.com/semantic-release/exec) to execute `web-ext` CLI commands directly
